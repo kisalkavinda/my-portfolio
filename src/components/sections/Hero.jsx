@@ -2,52 +2,14 @@ import React, { useState, useEffect, Suspense } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Brain, Sparkles, Code, Download } from 'lucide-react'
 
-// 3D Imports
-import { Canvas } from '@react-three/fiber'
-import { 
-  useGLTF, 
-  Stage, 
-  PresentationControls, 
-  Float, 
-  useAnimations,
-  Environment 
-} from '@react-three/drei'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 // Data Imports
 import { personalInfo } from '../../data/personalInfo'
 import { useScrollTo } from '../../hooks/useScrollTo'
 import GlitchText from '../common/GlitchText'
 
-// =====================================
-//  3D Model Component
-// =====================================
-const Model = (props) => {
-  const { scene, animations } = useGLTF('/animations/model/robot.glb')
-  const { actions } = useAnimations(animations, scene)
-  
-  useEffect(() => {
-    if (actions && Object.keys(actions).length > 0) {
-      const firstAnim = Object.keys(actions)[0]
-      actions[firstAnim].reset().fadeIn(0.5).play()
-    }
-  }, [actions])
 
-  return <primitive object={scene} {...props} />
-}
-
-useGLTF.preload('/animations/model/robot.glb')
-
-// =====================================
-//  Fallback Component
-// =====================================
-const FallbackModel = (props) => {
-  return (
-    <mesh {...props}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshStandardMaterial color="#a855f7" metalness={0.6} roughness={0.2} emissive="#6b21a8" emissiveIntensity={2} />
-    </mesh>
-  )
-}
 
 // =====================================
 //  Background Neural Network
@@ -103,7 +65,6 @@ const Hero = () => {
   const scrollToSection = useScrollTo()
   const [currentRole, setCurrentRole] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
-  const [modelError, setModelError] = useState(false)
 
   const roles = [
     'ML Enthusiast',
@@ -273,111 +234,26 @@ const Hero = () => {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              {/* REMOVED: Background Glow div to remove box effect */}
-              
-              {/* 3D Canvas Container */}
+              {/* ✅ Fixed Lottie Animation (centered & proportional) */}
               <motion.div
-                // FIXED: Removed bg-black/5, rounded-3xl, and overflow-hidden to make it float freely
-                className="relative z-10 w-full h-full bg-transparent"
-                animate={{ scale: isHovering ? 1.08 : 1 }}
-                transition={{ duration: 0.6 }}
+                className="relative z-10 w-full h-full flex items-center justify-center"
+                animate={{
+                  scale: isHovering ? 1.08 : 1,
+                  rotate: isHovering ? 3 : 0
+                }}
+                transition={{ duration: 0.6, type: 'spring', stiffness: 180 }}
               >
-                <Canvas
-                  dpr={[1, 2]} 
-                  shadows
-                  camera={{ fov: 45 }}
-                  // Maintains high brightness
-                  gl={{ preserveDrawingBuffer: true, toneMappingExposure: 2.5 }} 
-                  style={{ background: "transparent", touchAction: "none" }}
-                  onError={(error) => {
-                    console.error("Canvas error:", error)
-                    setModelError(true)
+                <DotLottieReact
+                  src="/animations/Animation - 1708102454731.json"
+                  loop
+                  autoplay
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain'
                   }}
-                >
-                  <Suspense fallback={null}>
-                    {/* Lighting Setup */}
-                    <Environment preset="studio" />
-                    <ambientLight intensity={3} />
-                    
-                    <spotLight 
-                      position={[-10, 10, 5]} 
-                      angle={0.5} 
-                      penumbra={1} 
-                      intensity={200} 
-                      color="#d946ef" 
-                      castShadow 
-                    />
-                    
-                    <spotLight 
-                      position={[10, 10, 5]} 
-                      angle={0.5} 
-                      penumbra={1} 
-                      intensity={200} 
-                      color="#06b6d4" 
-                      castShadow 
-                    />
-                    
-                    <directionalLight 
-                      position={[0, 5, 10]} 
-                      intensity={5} 
-                      color="#ffffff" 
-                    />
-
-                    <PresentationControls
-                      speed={1.5}
-                      global
-                      zoom={0.8}
-                      polar={[-0.1, Math.PI / 4]}
-                    >
-                      <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-                        <Stage environment="studio" intensity={3} contactShadow={false}>
-                          {modelError ? (
-                            <FallbackModel />
-                          ) : (
-                            <Model />
-                          )}
-                        </Stage>
-                      </Float>
-                    </PresentationControls>
-                  </Suspense>
-                </Canvas>
+                />
               </motion.div>
-
-              {/* Hover Particles */}
-              {isHovering && (
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  {[...Array(14)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2 h-2 bg-purple-400 rounded-full"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`
-                      }}
-                      animate={{
-                        scale: [0, 1.3, 0],
-                        opacity: [0, 1, 0],
-                        y: [0, -60]
-                      }}
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        delay: i * 0.1
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-
-              {/* Error Message UI */}
-              {modelError && (
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="text-center bg-black/30 backdrop-blur-sm p-4 rounded-xl">
-                    <p className="text-purple-300 mb-2">Model failed to load</p>
-                    <p className="text-gray-400 text-sm">Using fallback visualization</p>
-                  </div>
-                </div>
-              )}
             </div>
           </motion.div>
         </div>

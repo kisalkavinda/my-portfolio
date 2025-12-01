@@ -26,7 +26,7 @@ function App() {
 
   return (
     <DarkModeProvider>
-      <BrowserRouter basename="/my-portfolio">
+      <BrowserRouter>
         {showLanding ? (
           <Landing onComplete={handleLandingComplete} />
         ) : (
