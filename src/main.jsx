@@ -6,11 +6,11 @@ import './styles/globals.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* We wrap the App in BrowserRouter here.
-      'import.meta.env.BASE_URL' automatically reads the 'base' value 
-      from your vite.config.js ('/my-portfolio/' on build, '/' on dev).
+    {/* Updated Logic:
+      - If we are in Development (localhost), use '/'
+      - If we are in Production (GitHub Pages), use '/my-portfolio/'
     */}
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/my-portfolio/'}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
