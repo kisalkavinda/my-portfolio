@@ -244,7 +244,7 @@ const Hero = () => {
                 transition={{ duration: 0.6, type: 'spring', stiffness: 180 }}
               >
                 <DotLottieReact
-                  src="/animations/Animation - 1708102454731.json"
+                  src={`${import.meta.env.BASE_URL}animations/Animation - 1708102454731.json`}
                   loop
                   autoplay
                   style={{

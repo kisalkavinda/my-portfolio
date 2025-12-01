@@ -1,7 +1,7 @@
 export const certificates = [
   {
     title: 'Python for Beginners',
-    image: '/Certificates/Python_for_Beginners/Python_for_Beginners_E-Certificate_page-0001.jpg',
+    image: `${import.meta.env.BASE_URL}Certificates/Python_for_Beginners/Python_for_Beginners_E-Certificate_page-0001.jpg`,
     issuingOrg: 'University of Moratuwa',
     date: '2025',
     description: 'A foundational course on Python programming, covering the basics of syntax, data structures, and control flow.',
@@ -10,8 +10,8 @@ export const certificates = [
   },
   {
     title: 'Mastering Python, Pandas, Numpy for Absolute Beginners',
-    image: '/Certificates/Mastering Python, Pandas, Numpy for Absolute Beginners/Mastering Python, Pandas, Numpy for Absolute Beginners.jpg',
-    pdf: '/Certificates/Mastering Python, Pandas, Numpy for Absolute Beginners/Mastering Python, Pandas, Numpy for Absolute Beginners.pdf',
+    image: `${import.meta.env.BASE_URL}Certificates/Mastering Python, Pandas, Numpy for Absolute Beginners/Mastering Python, Pandas, Numpy for Absolute Beginners.jpg`,
+    pdf: `${import.meta.env.BASE_URL}Certificates/Mastering Python, Pandas, Numpy for Absolute Beginners/Mastering Python, Pandas, Numpy for Absolute Beginners.pdf`,
     issuingOrg: 'Udemy',
     date: '2025',
     description: 'Learn to use Python for data science with a focus on the Pandas and NumPy libraries for data manipulation and analysis.',
@@ -20,8 +20,8 @@ export const certificates = [
   },
   {
     title: 'Supervised Machine Learning: Regression and Classification',
-    image: '/Certificates/Supervised Machine Learning Regression and Classification/Supervised Machine Learning Regression and Classification.jpg',
-    pdf: '/Certificates/Supervised Machine Learning Regression and Classification/Supervised Machine Learning Regression and Classification.pdf',
+    image: `${import.meta.env.BASE_URL}Certificates/Supervised Machine Learning Regression and Classification/Supervised Machine Learning Regression and Classification.jpg`,
+    pdf: `${import.meta.env.BASE_URL}Certificates/Supervised Machine Learning Regression and Classification/Supervised Machine Learning Regression and Classification.pdf`,
     issuingOrg: 'Coursera - Stanford University',
     date: '2025',
     description: 'A deep dive into supervised learning, covering regression and classification algorithms and techniques.',
@@ -30,8 +30,8 @@ export const certificates = [
   },
   {
     title: 'Advanced Learning Algorithms',
-    image: '/Certificates/Advanced Learning Algorithms/Advanced Learning Algorithms.jpg',
-    pdf: '/Certificates/Advanced Learning Algorithms/Advanced Learning Algorithms.pdf',
+    image: `${import.meta.env.BASE_URL}Certificates/Advanced Learning Algorithms/Advanced Learning Algorithms.jpg`,
+    pdf: `${import.meta.env.BASE_URL}Certificates/Advanced Learning Algorithms/Advanced Learning Algorithms.pdf`,
     issuingOrg: 'Coursera - Stanford University',
     date: '2025',
     description: 'Explores advanced machine learning algorithms like neural networks, decision trees, and SVMs. Covers model optimization, regularization, and practical applications.',
@@ -40,8 +40,8 @@ export const certificates = [
   },
   {
     title: 'Unsupervised Learning, Recommenders, Reinforcement Learning',
-    image: '/Certificates/Unsupervised Learning, Recommenders,Reinforcement Learning/Unsupervised Learning, Recommenders, Reinforcement Learning.jpg',
-    pdf: '/Certificates/Unsupervised Learning, Recommenders,Reinforcement Learning/Unsupervised Learning, Recommenders, Reinforcement Learning.pdf',
+    image: `${import.meta.env.BASE_URL}Certificates/Unsupervised Learning, Recommenders,Reinforcement Learning/Unsupervised Learning, Recommenders, Reinforcement Learning.jpg`,
+    pdf: `${import.meta.env.BASE_URL}Certificates/Unsupervised Learning, Recommenders,Reinforcement Learning/Unsupervised Learning, Recommenders, Reinforcement Learning.pdf`,
     issuingOrg: 'Coursera - Stanford University',
     date: '2025',
     description: 'Covers unsupervised learning (clustering, dimensionality reduction), recommender systems (collaborative filtering), and reinforcement learning (Q-learning, policy gradients).',
@@ -50,8 +50,8 @@ export const certificates = [
   },
   {
     title: 'Machine Learning',
-    image: '/Certificates/Machine Learning/Machine Learning.jpg',
-    pdf: '/Certificates/Machine Learning/Machine Learning.pdf',
+    image: `${import.meta.env.BASE_URL}Certificates/Machine Learning/Machine Learning.jpg`,
+    pdf: `${import.meta.env.BASE_URL}Certificates/Machine Learning/Machine Learning.pdf`,
     issuingOrg: 'Coursera - Stanford University',
     date: '2025',
     description: 'Covers foundational machine learning concepts, algorithms, model training, and evaluation metrics. Includes linear/logistic regression and neural networks.',

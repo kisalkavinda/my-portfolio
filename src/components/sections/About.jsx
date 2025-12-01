@@ -115,7 +115,7 @@ const About = () => {
               
               {/* Profile Image - Replace with your actual image */}
               <img
-                src="/profile-picture.jpg" // Put your image in public folder
+                src={`${import.meta.env.BASE_URL}profile-picture.jpg`} // Put your image in public folder
                 alt={personalInfo.name}
                 className="w-full h-full object-cover"
                 onError={(e) => {
